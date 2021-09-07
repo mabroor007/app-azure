@@ -1,0 +1,24 @@
+---
+# Deployment for the app
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-depl
+  labels:
+    app: app-depl
+spec:
+  selector:
+    matchLabels:
+      app: app-pod
+  template:
+    metadata:
+      name: app-pod
+      labels:
+        app: app-pod
+    spec:
+      containers:
+        - name: app-c
+          image: myregistry\mycontainer:v1
+          ports:
+            - containerPort: 3000
+              name: port-c-port
