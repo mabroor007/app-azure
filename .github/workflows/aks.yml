@@ -54,13 +54,12 @@ jobs:
       # Set up kustomize
       - name: Set up Kustomize
         run: |-
-          curl --location https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.2.0/kustomize_v4.2.0_linux_amd64.tar.gz | tar xz
-          chmod u+x ./kustomize
+          snap install kustomize
 
       - name: Configuring Image
         run: |-
-          (cd k8s && ./kustomize edit set image IMAGE_URL=${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }})
-          ./kustomize build ./k8s
+          (cd k8s && kustomize edit set image IMAGE_URL=${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }})
+          kustomize build ./k8s
 
       # Deploy app to AKS
       - uses: azure/k8s-deploy@v1
