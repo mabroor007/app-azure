@@ -61,8 +61,8 @@ jobs:
       - name: Configuring Image
         run: |-
           (cd k8s && kustomize edit set image IMAGE_URL=${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }})
-          kustomize build ./k8s > k8s/deployment.yml
-          cat ./k8s/deployment.yml
-          kubectl apply -f ./k8s/deployment.yml
+          kustomize build ./k8s > deployment.yml
+          cat deployment.yml
+          kubectl apply -f deployment.yml
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
