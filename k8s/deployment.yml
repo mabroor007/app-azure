@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: app-c
-          image: myregistry\mycontainer:v1
+          image: IMAGE_URL
           ports:
             - containerPort: 3000
               name: port-c-port
