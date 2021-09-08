@@ -54,7 +54,7 @@ jobs:
       # Set up kustomize
       - name: Set up Kustomize
         run: |-
-          snap install kustomize
+          sudo snap install kustomize
 
       - name: Configuring Image
         run: |-
