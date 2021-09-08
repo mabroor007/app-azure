@@ -59,7 +59,7 @@ jobs:
 
       - name: Configuring Image
         run: |-
-          ./kustomize edit set image IMAGE_URL=${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
+          (cd k8s && ./kustomize edit set image IMAGE_URL=${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }})
           ./kustomize build ./k8s
 
       # Deploy app to AKS
