@@ -56,7 +56,7 @@ jobs:
           sudo snap install kustomize
           (cd k8s && kustomize edit set image IMAGE_URL=${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }})
           (cd k8s && kustomize build . > out)
-          (cd k8s $$ cat out > deployment.yml)
+          (cd k8s && cat out > deployment.yml)
 
         # Deploy app to AKS
       - uses: azure/k8s-deploy@v1
